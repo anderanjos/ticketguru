@@ -1,0 +1,48 @@
+version: '3.9'
+
+networks:
+  default:
+    driver: bridge
+
+services:
+  ticketguru:
+    image: anderanjos/ticketguru:latest
+    container_name: ticketguru
+    restart: unless-stopped
+    environment:
+      - HOST_COMPANY_1=http://host.docker.internal:8081
+      - HOST_COMPANY_2=http://host.docker.internal:8082
+    command:
+      - 'sh /opt/jboss/container/java/run/run-java.sh'
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    networks:
+      - default
+
+  simple-rest-service-1:
+    image: anderanjos/simple-rest-service:0.0.1
+    container_name: simple-rest-service-1
+    restart: unless-stopped
+    command:
+      - 'sh /opt/jboss/container/java/run/run-java.sh'
+    expose:
+      - 8080
+    ports:
+      - 8081:8080
+    networks:
+      - default
+
+  simple-rest-service-2:
+    image: anderanjos/simple-rest-service:0.0.1
+    container_name: simple-rest-service-2
+    restart: unless-stopped
+    command:
+      - 'sh /opt/jboss/container/java/run/run-java.sh'
+    expose:
+      - 8080
+    ports:
+      - 8082:8080
+    networks:
+      - default
