@@ -48,9 +48,9 @@ All of them returns the same payload, just differs *how* they perform their role
 
 
 
+---
+
 ### 🤓 Author
 
-##### Anderson dos Anjos
-
-### [![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-Profile-informational?style=flat&logo=linkedin&logoColor=white&color=0D76A8)](https://www.linkedin.com/in/anderanjos/)
+##### *Anderson dos Anjos*   [![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-Profile-informational?style=flat&logo=linkedin&logoColor=white&color=0D76A8)](https://www.linkedin.com/in/anderanjos/)
 
