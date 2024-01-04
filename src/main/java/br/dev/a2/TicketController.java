@@ -32,11 +32,11 @@ public class TicketController {
 
 
     @Operation(summary = "Fetch tickets using SEQUENTIAL platform threads strategy")
-    @APIResponse(responseCode = "200", //
-            content = @Content(//
-                    mediaType = MediaType.APPLICATION_JSON, //
-                    schema = @Schema(//
-                            implementation = Ticket.class, //
+    @APIResponse(responseCode = "200",
+            content = @Content(
+                    mediaType = MediaType.APPLICATION_JSON,
+                    schema = @Schema(
+                            implementation = Ticket.class,
                             type = SchemaType.ARRAY)))
     @GET
     @Path("search")
@@ -50,11 +50,11 @@ public class TicketController {
                 .build();
     }
     @Operation(summary = "Fetch tickets using ASYNCHRONOUS CompletableFutures and Thread Pool strategy")
-    @APIResponse(responseCode = "200", //
-            content = @Content(//
-                    mediaType = MediaType.APPLICATION_JSON, //
-                    schema = @Schema(//
-                            implementation = Ticket.class, //
+    @APIResponse(responseCode = "200",
+            content = @Content(
+                    mediaType = MediaType.APPLICATION_JSON,
+                    schema = @Schema(
+                            implementation = Ticket.class,
                             type = SchemaType.ARRAY)))
     @GET
     @Path("search-async")
@@ -69,11 +69,11 @@ public class TicketController {
     }
 
     @Operation(summary = "Fetch tickets using SEQUENTIAL approach over Virtual Threads")
-    @APIResponse(responseCode = "200", //
-            content = @Content(//
-                    mediaType = MediaType.APPLICATION_JSON, //
-                    schema = @Schema(//
-                            implementation = Ticket.class, //
+    @APIResponse(responseCode = "200",
+            content = @Content(
+                    mediaType = MediaType.APPLICATION_JSON,
+                    schema = @Schema(
+                            implementation = Ticket.class,
                             type = SchemaType.ARRAY)))
     @GET
     @Path("search-vt")
