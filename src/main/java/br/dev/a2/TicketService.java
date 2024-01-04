@@ -96,9 +96,6 @@ public class TicketService {
     private List<Ticket> fetchTicketsConcurrent() {
         List<Future<List<Ticket>>> futures;
 
-//        futures = List.of(executorService.submit(client::retrieveTicketAvailabilityFromClient1),
-//                executorService.submit(client::retrieveTicketAvailabilityFromClient2));
-
         try {
             futures = executorService.invokeAll(
                     List.of(client::retrieveTicketAvailabilityFromClient1, client::retrieveTicketAvailabilityFromClient2)

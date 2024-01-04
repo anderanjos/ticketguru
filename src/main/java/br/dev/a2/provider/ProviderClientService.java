@@ -19,13 +19,6 @@ public class ProviderClientService {
 
 
     public List<Ticket> retrieveTicketAvailabilityFromClient1(){
-//        System.out.printf("Company 1: %s \n", Thread.currentThread());
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-
         ProviderClient companyProvider1 = QuarkusRestClientBuilder.newBuilder()
                 .baseUri(URI.create(HOST_COMPANY_1))
                 .build(ProviderClient.class);
@@ -33,12 +26,6 @@ public class ProviderClientService {
     }
 
     public List<Ticket> retrieveTicketAvailabilityFromClient2(){
-//        System.out.printf("Company 2: %s\n", Thread.currentThread());
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
         ProviderClient companyProvider2 = QuarkusRestClientBuilder.newBuilder()
                 .baseUri(URI.create(HOST_COMPANY_2))
                 .build(ProviderClient.class);
