@@ -49,7 +49,7 @@ public class TicketController {
                 .entity(tickets)
                 .build();
     }
-    @Operation(summary = "Fetch tickets using ASYNCHRONOUS CompletableFutures and Thread Pool strategy")
+    @Operation(summary = "Fetch tickets using ASYNCHRONOUSLY using CompletableFutures and Thread Pool strategy")
     @APIResponse(responseCode = "200",
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON,
