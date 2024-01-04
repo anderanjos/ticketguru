@@ -17,8 +17,11 @@ mvn quarkus:dev
 
 
 
-This micro *(to not say tiny)* service has three endpoints that might be found in:
-💻 http://localhost:8080/q/swagger-ui/#/ \
+This micro *(to not say tiny)* service has three endpoints that might be found in: 
+
+💻 http://localhost:8080/q/swagger-ui/#/ 
+
+
 
 All of them returns the same, just differs *how* they perform their roles. Although names are self explained, they are:
 
