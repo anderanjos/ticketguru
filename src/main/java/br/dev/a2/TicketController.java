@@ -7,6 +7,11 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
 import javax.swing.text.html.Option;
 import java.util.Collection;
@@ -26,6 +31,13 @@ public class TicketController {
     }
 
 
+    @Operation(summary = "Fetch tickets using SEQUENTIAL platform threads strategy")
+    @APIResponse(responseCode = "200", //
+            content = @Content(//
+                    mediaType = MediaType.APPLICATION_JSON, //
+                    schema = @Schema(//
+                            implementation = Ticket.class, //
+                            type = SchemaType.ARRAY)))
     @GET
     @Path("search")
     @Produces(MediaType.APPLICATION_JSON)
@@ -37,7 +49,13 @@ public class TicketController {
                 .entity(tickets)
                 .build();
     }
-
+    @Operation(summary = "Fetch tickets using ASYNCHRONOUS CompletableFutures and Thread Pool strategy")
+    @APIResponse(responseCode = "200", //
+            content = @Content(//
+                    mediaType = MediaType.APPLICATION_JSON, //
+                    schema = @Schema(//
+                            implementation = Ticket.class, //
+                            type = SchemaType.ARRAY)))
     @GET
     @Path("search-async")
     @Produces(MediaType.APPLICATION_JSON)
@@ -50,6 +68,13 @@ public class TicketController {
                 .build();
     }
 
+    @Operation(summary = "Fetch tickets using SEQUENTIAL approach over Virtual Threads")
+    @APIResponse(responseCode = "200", //
+            content = @Content(//
+                    mediaType = MediaType.APPLICATION_JSON, //
+                    schema = @Schema(//
+                            implementation = Ticket.class, //
+                            type = SchemaType.ARRAY)))
     @GET
     @Path("search-vt")
     @Produces(MediaType.APPLICATION_JSON)
