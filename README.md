@@ -6,6 +6,8 @@ Basically, we want to simulate a travel agency fetching for flight tickets in di
 
 
 
+
+
 #### 💾 Tech Stack (that you'll need) 
 
 - [Java 21](https://www.oracle.com/br/java/technologies/downloads/)
@@ -33,6 +35,8 @@ Basically, we want to simulate a travel agency fetching for flight tickets in di
 
 
 
+
+
 #### 🔧 Infra
 
 Before running the application it is necessary provides the infrastructure required. Therefore, execute *Docker Compose* script placed in: `src/main/docker/docker-compose.yaml`
@@ -44,6 +48,8 @@ And they might be accessed in:
 curl --location 'localhost:8081/api/ticket'
 curl --location 'localhost:8082/api/ticket'
 ```
+
+
 
 
 
