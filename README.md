@@ -4,25 +4,45 @@ A sample project aiming testing Java Virtual Threads and, at the same time, show
 
 Basically, we want to simulate a travel agency fetching for flight tickets in different providers. To accomplish this mission we trying three different approaches. 
 
+
+
+#### 💾 Tech Stack (that you'll need) 
+
+- [Java 21](https://www.oracle.com/br/java/technologies/downloads/)
+- [Quarkus](https://quarkus.io/)
+- [Maven](https://maven.apache.org/)
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+- [K6](https://k6.io/)
+
+
+
 ---
+
+
 
 #### 🔧 Infra
 
-Before run the application it is necessary provides the infrastructure required. Therefore, execute *Docker Compose* script placed in: `src/main/docker/docker-compose.yaml`
+Before running the application it is necessary provides the infrastructure required. Therefore, execute *Docker Compose* script placed in: `src/main/docker/docker-compose.yaml`
 
 It will spin up 2 fake company providers, responsible for simulate our flight ticket providers.
+And they might be accessed in:
 
-
+```shell
+curl --location 'localhost:8081/api/ticket'
+curl --location 'localhost:8082/api/ticket'
+```
 
 
 
 #### 📝 Usage
 
-To run in development mode
+After docker compose script already have running, to start Ticketguru in development mode use:
 ```shell
 mvn quarkus:dev
 ```
-*It must be executed with wrapper in case Maven not been previously installed locally in your machine. 
+**It must be executed with wrapper in case Maven not been previously installed locally in your machine.* 
+
 ```shell
 ./mvnw quarkus:dev
 ```
@@ -49,15 +69,34 @@ All of them returns the same payload, just differs *how* they perform their role
 
 
 
+### Running the performance test
+
+[Since K6 loading test tool has been installed](https://k6.io/docs/get-started/installation/), you'll need to execute it against Ticketguru application.
+To do this, we provide a quite straightforward script, located in .... It contains:
+
+```  javascript
+import http from 'k6/http';
+import { check, sleep } from 'k6';
+
+export const options = {
+
+  stages: [
+    { duration: '20s', target: 200 }, // Ramp up config
+    { duration: '60s', target: 1000}, // Total users simulated in the test
+    { duration: '20s', target: 0 },
+  ]
+};
+
+export default function () {
+  const res = http.get('http://localhost:8080/api/search-vt') // microservice url
+  check(res, { 'status was 200': (r) => r.status == 200 })
+  sleep(1)
+}
+```
 
 
-#### 💾 Tech Stack 
-- Java 21
-- Quarkus
-- Maven
-- Docker
-- Docker Compose
 
+Feel free to play with script and try different test setup! 🤖
 
 
 ---
