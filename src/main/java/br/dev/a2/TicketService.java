@@ -6,10 +6,15 @@ import jakarta.enterprise.context.RequestScoped;
 import org.eclipse.microprofile.context.ManagedExecutor;
 
 import java.math.BigDecimal;
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RequestScoped
 public class TicketService {

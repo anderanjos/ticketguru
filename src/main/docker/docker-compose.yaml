@@ -5,21 +5,22 @@ networks:
     driver: bridge
 
 services:
-  ticketguru:
-    image: anderanjos/ticketguru:latest
-    container_name: ticketguru
-    restart: unless-stopped
-    environment:
-      - HOST_COMPANY_1=http://host.docker.internal:8081
-      - HOST_COMPANY_2=http://host.docker.internal:8082
-    command:
-      - 'sh /opt/jboss/container/java/run/run-java.sh'
-    expose:
-      - 8080
-    ports:
-      - 8080:8080
-    networks:
-      - default
+# UNCOMMENT IN CASE YOU DECIDE TO TEST ALL SERVICES CONTAINERIZED
+#  ticketguru:
+#    image: anderanjos/ticketguru:latest
+#    container_name: ticketguru
+#    restart: unless-stopped
+#    environment:
+#      - HOST_COMPANY_1=http://host.docker.internal:8081
+#      - HOST_COMPANY_2=http://host.docker.internal:8082
+#    command:
+#      - 'sh /opt/jboss/container/java/run/run-java.sh'
+#    expose:
+#      - 8080
+#    ports:
+#      - 8080:8080
+#    networks:
+#      - default
 
   simple-rest-service-1:
     image: anderanjos/simple-rest-service:0.0.1

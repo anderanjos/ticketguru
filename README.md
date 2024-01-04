@@ -6,8 +6,18 @@ Basically, we want to simulate a travel agency fetching for flight tickets in di
 
 ---
 
+#### 🔧 Infra
+
+Before run the application it is necessary provides the infrastructure required. Therefore, execute *Docker Compose* script placed in: `src/main/docker/docker-compose.yaml`
+
+It will spin up 2 fake company providers, responsible for simulate our flight ticket providers.
+
+
+
+
 
 #### 📝 Usage
+
 To run in development mode
 ```shell
 mvn quarkus:dev
@@ -45,6 +55,8 @@ All of them returns the same payload, just differs *how* they perform their role
 - Java 21
 - Quarkus
 - Maven
+- Docker
+- Docker Compose
 
 
 
