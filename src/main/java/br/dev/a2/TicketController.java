@@ -4,7 +4,6 @@ import io.smallrye.common.annotation.RunOnVirtualThread;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -13,13 +12,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
-import javax.swing.text.html.Option;
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
-import java.util.stream.Stream;
 
 @Path("/api")
 public class TicketController {
@@ -49,6 +42,8 @@ public class TicketController {
                 .entity(tickets)
                 .build();
     }
+
+
     @Operation(summary = "Fetch tickets using ASYNCHRONOUSLY using CompletableFutures and Thread Pool strategy")
     @APIResponse(responseCode = "200",
             content = @Content(
@@ -67,6 +62,7 @@ public class TicketController {
                 .entity(tickets)
                 .build();
     }
+
 
     @Operation(summary = "Fetch tickets using SEQUENTIAL approach over Virtual Threads")
     @APIResponse(responseCode = "200",

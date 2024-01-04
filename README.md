@@ -21,6 +21,18 @@ Basically, we want to simulate a travel agency fetching for flight tickets in di
 
 
 
+> This application has made specifically to complement topics discussed in these two articles about **Java Virtual Threads**. 
+>
+> #### [Virtual Threads. First impressions (part.1)](https://medium.com/@anderanjos.ti/virtual-threads-first-impressions-part-1-ffbe5b26cf19)
+>
+> Eventually, important aspects as package structure, test coverage, properly exception handling and others were left aside, for sake of simplicity.
+
+
+
+------
+
+
+
 #### 🔧 Infra
 
 Before running the application it is necessary provides the infrastructure required. Therefore, execute *Docker Compose* script placed in: `src/main/docker/docker-compose.yaml`
