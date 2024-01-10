@@ -13,6 +13,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Path("/api")
 public class TicketController {
@@ -26,8 +27,7 @@ public class TicketController {
 
     @Operation(summary = "Fetch tickets using SEQUENTIAL platform threads strategy")
     @APIResponse(responseCode = "200",
-            content = @Content(
-                    mediaType = MediaType.APPLICATION_JSON,
+            content = @Content(mediaType = MediaType.APPLICATION_JSON,
                     schema = @Schema(
                             implementation = Ticket.class,
                             type = SchemaType.ARRAY)))
@@ -46,28 +46,28 @@ public class TicketController {
 
     @Operation(summary = "Fetch tickets using ASYNCHRONOUSLY using CompletableFutures and Thread Pool strategy")
     @APIResponse(responseCode = "200",
-            content = @Content(
-                    mediaType = MediaType.APPLICATION_JSON,
+            content = @Content(mediaType = MediaType.APPLICATION_JSON,
                     schema = @Schema(
                             implementation = Ticket.class,
                             type = SchemaType.ARRAY)))
     @GET
     @Path("search-async")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response searchTicketsAsync() {
+    public CompletableFuture<List<Ticket>> searchTicketsAsync() {
+        CompletableFuture<Response> future = new CompletableFuture<>();
+        CompletableFuture<List<Ticket>> tickets = service.fetchTicketsAsync();
 
-        List<Ticket> tickets = service.fetchTicketsAsync();
-        return Response
-                .status(Response.Status.OK)
-                .entity(tickets)
-                .build();
+        return tickets
+                .whenComplete((response, err) -> future.complete(Response
+                        .status(Response.Status.OK)
+                        .entity(response)
+                        .build()));
     }
 
 
     @Operation(summary = "Fetch tickets using SEQUENTIAL approach over Virtual Threads")
     @APIResponse(responseCode = "200",
-            content = @Content(
-                    mediaType = MediaType.APPLICATION_JSON,
+            content = @Content(mediaType = MediaType.APPLICATION_JSON,
                     schema = @Schema(
                             implementation = Ticket.class,
                             type = SchemaType.ARRAY)))
@@ -83,5 +83,4 @@ public class TicketController {
                 .entity(tickets)
                 .build();
     }
-
 }
